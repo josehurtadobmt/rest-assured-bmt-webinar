@@ -75,5 +75,17 @@ public class UsersApiTests extends UsersApiConfig {
                 .statusCode(200);
     }
 
+    @Test
+    public void testUserValidateSchemaJSON() {
+
+        given()
+                .pathParam("id", 1).
+                when()
+                .get("users/{id}").
+                then()
+                .statusCode(200)
+                .body(matchesJsonSchemaInClasspath("user_schema.json"));
+    }
+
 
 }
